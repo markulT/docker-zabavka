@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript"></script>
+
+    <style type="text/css" media="screen" charset="utf-8">
+        #live-player {
+            position: fixed !important;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: black;
+        }
+
+        .dvr-player-wrapper {
+            background-color: black;
+        }
+    </style>
+    <link href="http://193.176.179.12:8880/flu/player/0.800c3e3e5284c0646b2b.css" rel="stylesheet">
+    <script type="text/javascript" src="http://193.176.179.12:8880/flu/player/runtime.eb43cd9d5f43079ce03b.js"></script>
+    <script type="text/javascript" src="http://193.176.179.12:8880/flu/player/vendors.96f5e10e7dc0d0c6e98b.js"></script>
+    <script type="text/javascript" src="http://193.176.179.12:8880/flu/player/main.5faa24e7a5565653822b.js"></script>
+</head>
+<body>
+<div id="live-player"></div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var options = {
+            parentId: '#live-player',
+            width: '100%',
+            height: '100%',
+        }
+        var config = {
+            "streamName": "support9",
+            "hasPreview": false,
+            "rtmpPort": null,
+            "rtmpsPort": null,
+            "authTokenName": "token",
+            "thumbnails_enabled": false,
+            "type": "live",
+            "dvr_info": null,
+            "protocols": {"hds": true, "hls": true, "dash": true, "webrtc": true, "mse": true, "mss": true}
+        };
+        var params = LivePlayer.parseUrl(window.location.href, options, {
+            "streamName": "support9",
+            "hasPreview": false,
+            "rtmpPort": null,
+            "rtmpsPort": null,
+            "authTokenName": "token",
+            "thumbnails_enabled": false,
+            "type": "live",
+            "dvr_info": null,
+            "protocols": {"hds": true, "hls": true, "dash": true, "webrtc": true, "mse": true, "mss": true}
+        });
+        window.LivePlayer = new LivePlayer(params);
+        document.getElementsByTagName('title')[0].innerHTML = config.streamName;
+    }
+</script>
+</body>
+</html>
