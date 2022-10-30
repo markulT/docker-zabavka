@@ -165,6 +165,10 @@ export const cancelMobileSubThunk = ({password}) => async (dispatch) => {
 
 export const getProfile = (redirect = true) => async (dispatch) => {
     const response = await api.get('http://localhost:8000/api/refresh', {withCredentials: true})
+    if(!response) {
+        Router.push('/auth/login')
+        return
+    }
     localStorage.setItem('token', response.data.userData.accessToken)
     console.log(response.data.userData.user, 'aboba')
     dispatch(setGuestAction(response.data.userData.user))
@@ -174,6 +178,10 @@ export const getProfile = (redirect = true) => async (dispatch) => {
 }
 export const getFullProfile = () => async (dispatch) => {
     const response = await api.get('http://localhost:8000/api/getFullProfile', {withCredentials: true})
+    if(!response){
+        Router.push('/auth/login')
+        return
+    }
     const parsedProfile = JSON.parse(response.data.fullProfile.fullProfile)
     dispatch(setFullProfile(parsedProfile))
 }
